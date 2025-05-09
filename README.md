@@ -55,14 +55,16 @@ This model call can easily be changed by modifying the LLM configuration in the 
 
 ## 🧩 System Architecture
 
-The application uses a graph-based architecture with the following key components:
+The application uses a graph-based architecture with the following workflow:
+
+![System Workflow](langgraph_gco_agent.png)
 
 ### Core Nodes:
-1. **check_relevance_node**: Filters out irrelevant questions by determining if the query is appropriate for a Virtual Grant Officer, returning a Yes/No output.
+1. **check_relevance**: Filters out irrelevant questions by determining if the query is appropriate for a Virtual Grant Officer, returning a Yes/No output.
 
-2. **build_prompt_node**: Merges chat history with retrieved documents to build the LLM prompt, combining the question with relevant context and sample format for the expected response.
+2. **build_prompt**: Prepares the prompt by combining the question with relevant context as well as sample format for expected response which then uses an LLM call to generate the answer.
 
-3. **generate_answer_node**: Revises responses for clarity, conciseness, and relevance.
+3. **generate_answer**: Revises the answer for clarity, conciseness, and relevance.
 
 ### Key Features:
 - Few-shot prompting using validation Q&A examples
